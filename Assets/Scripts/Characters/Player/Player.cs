@@ -1,14 +1,15 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 //TODO: a lot.
 
 [RequireComponent(typeof(PlayerInput))]
 public class Player : MonoBehaviour
 {
+    [FormerlySerializedAs("Data")]
     [Header("References")]
-    [field: SerializeField]
-    public PlayerSO Data;
-    
+    [field: SerializeField] public PlayerSO data;
+
     public PlayerInput Input { get; private set; }
 
     public Transform MainCameraTransform { get; private set; }
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
     {
         Rigidbody = GetComponent<Rigidbody>();
         Input = GetComponent<PlayerInput>();
+        
         MainCameraTransform = Camera.main.transform;
         _movementStateMachine = new PlayerMovementStateMachine(this);
     }

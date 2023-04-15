@@ -12,7 +12,7 @@ public class PlayerMovementState : IState
     public PlayerMovementState(PlayerMovementStateMachine playerMovementStateMachine)
     {
         stateMachine = playerMovementStateMachine;
-        movementData = stateMachine.Player.Data.GroundedData;
+        movementData = stateMachine.Player.data.GroundedData;
         InitializeData();
     }
     
@@ -123,7 +123,7 @@ public class PlayerMovementState : IState
     
     protected float GetMovementSpeed()
     {
-        return stateMachine.Player.Data.GroundedData.BaseSpeed * stateMachine.ReusableData.MovementSpeedModifier;
+        return stateMachine.Player.data.GroundedData.BaseSpeed * stateMachine.ReusableData.MovementSpeedModifier;
     }
     
     protected void RotateTowardsTargetRotation()
