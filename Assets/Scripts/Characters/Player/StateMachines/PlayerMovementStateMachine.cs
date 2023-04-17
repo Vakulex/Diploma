@@ -8,7 +8,6 @@ public class PlayerMovementStateMachine : StateMachine
     public PlayerWalkState WalkState { get; }
     public PlayerRunState RunState { get; }
     public PlayerSprintState SprintState { get; }
-    
     public PlayerDashState DashState { get; }
 
     public PlayerMovementStateMachine(Player player)

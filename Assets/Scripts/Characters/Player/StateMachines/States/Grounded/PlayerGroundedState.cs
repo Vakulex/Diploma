@@ -54,12 +54,17 @@ public class PlayerGroundedState : PlayerMovementState
     {
         base.AddInputActionsCallbacks();
         stateMachine.Player.Input.PlayerActions.Movement.canceled += OnMovementCanceled;
+
+        stateMachine.Player.Input.PlayerActions.Dash.started += OnDashStarted;
     }
+
 
     protected override void RemoveInputActionsCallbacks()
     {
         base.RemoveInputActionsCallbacks();
         stateMachine.Player.Input.PlayerActions.Movement.canceled -= OnMovementCanceled;
+
+        stateMachine.Player.Input.PlayerActions.Dash.canceled -= OnDashStarted;
     }
     
     protected virtual void OnMove()
@@ -78,6 +83,12 @@ public class PlayerGroundedState : PlayerMovementState
     protected virtual void OnMovementCanceled(InputAction.CallbackContext context)
     {
         stateMachine.ChangeState(stateMachine.IdleState);
+    }
+    
+    
+    protected virtual void OnDashStarted(InputAction.CallbackContext obj)
+    {
+        stateMachine.ChangeState(stateMachine.DashState);
     }
     #endregion
 }
