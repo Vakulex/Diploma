@@ -1,15 +1,19 @@
+using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 //TODO: a lot.
 
 [RequireComponent(typeof(PlayerInput))]
 public class Player : MonoBehaviour
 {
-    [FormerlySerializedAs("Data")]
-    [Header("References")]
-    [field: SerializeField] public PlayerSO data;
+    [field: Header("References")]
+    [field: SerializeField]
+    public PlayerSO Data { get; private set; }
 
+    [field: Header("Collisions")]
+    [field: SerializeField] public CapsuleColliderUtility ColliderUtility { get; private set; }
+    [field: SerializeField] public PlayerLayerData LayerData { get; private set; }
+    
     public PlayerInput Input { get; private set; }
 
     public Transform MainCameraTransform { get; private set; }
@@ -23,8 +27,17 @@ public class Player : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody>();
         Input = GetComponent<PlayerInput>();
         
+        ColliderUtility.Initialize(gameObject);
+        ColliderUtility.CalculateCapsuleColliderDimensions();
+        
         MainCameraTransform = Camera.main.transform;
         _movementStateMachine = new PlayerMovementStateMachine(this);
+    }
+
+    private void OnValidate()
+    {
+        ColliderUtility.Initialize(gameObject);
+        ColliderUtility.CalculateCapsuleColliderDimensions();
     }
 
     private void Start()

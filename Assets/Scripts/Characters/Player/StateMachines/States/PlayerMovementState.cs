@@ -12,7 +12,7 @@ public class PlayerMovementState : IState
     public PlayerMovementState(PlayerMovementStateMachine playerMovementStateMachine)
     {
         stateMachine = playerMovementStateMachine;
-        movementData = stateMachine.Player.data.GroundedData;
+        movementData = stateMachine.Player.Data.GroundedData;
         InitializeData();
     }
     
@@ -123,7 +123,12 @@ public class PlayerMovementState : IState
     
     protected float GetMovementSpeed()
     {
-        return stateMachine.Player.data.GroundedData.BaseSpeed * stateMachine.ReusableData.MovementSpeedModifier;
+        return stateMachine.Player.Data.GroundedData.BaseSpeed * stateMachine.ReusableData.MovementSpeedModifier;
+    }
+
+    protected Vector3 GetPlayerVerticalVelocity()
+    {
+        return new Vector3(0f, stateMachine.Player.Rigidbody.velocity.y, 0f);
     }
     
     protected void RotateTowardsTargetRotation()
