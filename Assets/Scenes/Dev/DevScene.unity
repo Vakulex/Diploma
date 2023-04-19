@@ -4792,11 +4792,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 241795381254962208, guid: 282b5b7b90ce99d4abe169ee78176b73,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 2164031908058625633, guid: 282b5b7b90ce99d4abe169ee78176b73,
         type: 3}
       propertyPath: _healthUI

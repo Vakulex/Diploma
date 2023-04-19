@@ -1,12 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
 public class PlayerMovementState : IState
 {
     protected PlayerMovementStateMachine stateMachine ;
-
-
+    
     protected PlayerGroundedData movementData;
 
     public PlayerMovementState(PlayerMovementStateMachine playerMovementStateMachine)
@@ -48,6 +46,22 @@ public class PlayerMovementState : IState
     {
         Move();
     }
+
+    public virtual void OnAnimationEnterEvent()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public virtual void OnAnimationExitEvent()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public virtual void OnAnimationTransitionEvent()
+    {
+        throw new System.NotImplementedException();
+    }
+
     #endregion
     
     #region Main Methods

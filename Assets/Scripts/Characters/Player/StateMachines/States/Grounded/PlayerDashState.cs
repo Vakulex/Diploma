@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerDashState : PlayerGroundedState
 {
@@ -26,6 +26,18 @@ public class PlayerDashState : PlayerGroundedState
         UpdateConsecutiveDashes();
         
         _startTime = Time.time;
+    }
+    
+    public override void OnAnimationTransitionEvent()
+    {
+        base.OnAnimationTransitionEvent();
+
+        if (stateMachine.ReusableData.MovementInput == Vector2.zero)
+        {
+            stateMachine.ChangeState(stateMachine.IdleState);
+            return;
+        }
+        stateMachine.ChangeState(stateMachine.SprintState);
     }
     #endregion
     
@@ -61,6 +73,12 @@ public class PlayerDashState : PlayerGroundedState
     {
         return Time.time < _startTime + _dashData.TimeToBeConsideredConsecutive;
     }
-
+    #endregion
+    
+    #region Input Methods
+    protected override void OnDashStarted(InputAction.CallbackContext obj)
+    {
+        
+    }
     #endregion
 }

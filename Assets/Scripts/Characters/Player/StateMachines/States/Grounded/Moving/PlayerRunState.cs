@@ -1,10 +1,15 @@
+using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerRunState : PlayerMovingState
 {
+    private PlayerSprintData _sprintData;
+    private float _startTime;
+    
     public PlayerRunState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
     {
-        
+        _sprintData = movementData.SprintData;
     }
     
     #region IState Methods
@@ -13,10 +18,39 @@ public class PlayerRunState : PlayerMovingState
     {
         base.Enter();
         stateMachine.ReusableData.MovementSpeedModifier = movementData.RunData.SpeedModifier;
+        _startTime = Time.time;
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        
+        if(!stateMachine.ReusableData.ShouldWalk)
+            return;
+        
+        if(Time.time < _startTime + _sprintData.RunToWalkTime)
+            return;
+
+        StopRunning();
     }
 
     #endregion
 
+    #region Main Methods
+
+    private void StopRunning()
+    {
+        if (stateMachine.ReusableData.MovementInput == Vector2.zero)
+        {
+            stateMachine.ChangeState(stateMachine.IdleState);
+            return;
+        }
+        
+        stateMachine.ChangeState(stateMachine.WalkState);
+    }
+
+    #endregion
+    
     #region Input Methods
     protected override void OnWalkToggleStarted(InputAction.CallbackContext context)
     {
