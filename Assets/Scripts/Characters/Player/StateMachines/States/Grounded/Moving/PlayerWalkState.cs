@@ -7,7 +7,6 @@ public class PlayerWalkState : PlayerMovingState
         
     }
 
-
     #region IState Methods
     public override void Enter()
     {
@@ -20,7 +19,13 @@ public class PlayerWalkState : PlayerMovingState
     protected override void OnWalkToggleStarted(InputAction.CallbackContext context)
     {
         base.OnWalkToggleStarted(context);
+        
         stateMachine.ChangeState(stateMachine.RunState);
+    }
+
+    protected override void OnMovementCanceled(InputAction.CallbackContext context)
+    {
+        stateMachine.ChangeState(stateMachine.LightStopState);
     }
     #endregion
 }

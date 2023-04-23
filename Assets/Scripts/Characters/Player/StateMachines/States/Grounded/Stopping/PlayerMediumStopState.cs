@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PlayerMediumStopState : MonoBehaviour
+public class PlayerMediumStopState : PlayerStopState
 {
-    // Start is called before the first frame update
-    void Start()
+    public PlayerMediumStopState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
     {
-        
     }
+    
+    #region IState Methods
+    public override void Enter()
+    {
+        base.Enter();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        stateMachine.ReusableData.MovementDecelerationForce = movementData.StopData.MediumDecelerationForce;
     }
+    #endregion
 }

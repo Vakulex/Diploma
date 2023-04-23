@@ -82,6 +82,11 @@ public class PlayerSprintState : PlayerMovingState
         _keepSprinting = true;
     }
     
+    protected override void OnMovementCanceled(InputAction.CallbackContext context)
+    {
+        stateMachine.ChangeState(stateMachine.HardStopState);
+    }
+    
     #endregion
 
     

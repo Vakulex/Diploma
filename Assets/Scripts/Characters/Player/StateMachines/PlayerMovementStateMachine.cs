@@ -7,6 +7,9 @@ public class PlayerMovementStateMachine : StateMachine
     public PlayerRunState RunState { get; }
     public PlayerSprintState SprintState { get; }
     public PlayerDashState DashState { get; }
+    public PlayerLightStopState LightStopState { get; }
+    public PlayerMediumStopState MediumStopState { get; }
+    public PlayerHardStopState HardStopState { get; }
 
     public PlayerMovementStateMachine(Player player)
     {
@@ -17,5 +20,8 @@ public class PlayerMovementStateMachine : StateMachine
         RunState = new PlayerRunState(this);
         SprintState = new PlayerSprintState(this);
         DashState = new PlayerDashState(this);
+        LightStopState = new PlayerLightStopState(this);
+        MediumStopState = new PlayerMediumStopState(this);
+        HardStopState = new PlayerHardStopState(this);
     }
 }

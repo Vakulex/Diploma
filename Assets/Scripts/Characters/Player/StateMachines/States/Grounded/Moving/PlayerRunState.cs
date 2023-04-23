@@ -56,5 +56,10 @@ public class PlayerRunState : PlayerMovingState
         base.OnWalkToggleStarted(context);
         stateMachine.ChangeState(stateMachine.WalkState);
     }
+    
+    protected override void OnMovementCanceled(InputAction.CallbackContext context)
+    {
+        stateMachine.ChangeState(stateMachine.MediumStopState);
+    }
     #endregion
 }

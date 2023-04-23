@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,11 +28,9 @@ public class PlayerDashState : PlayerGroundedState
     
     public override void OnAnimationTransitionEvent()
     {
-        base.OnAnimationTransitionEvent();
-
         if (stateMachine.ReusableData.MovementInput == Vector2.zero)
         {
-            stateMachine.ChangeState(stateMachine.IdleState);
+            stateMachine.ChangeState(stateMachine.HardStopState);
             return;
         }
         stateMachine.ChangeState(stateMachine.SprintState);
