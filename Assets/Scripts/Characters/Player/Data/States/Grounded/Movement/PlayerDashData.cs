@@ -9,6 +9,9 @@ public class PlayerDashData
     public float SpeedModifier { get; private set; } = 2f;
     
     [field: SerializeField]
+    public PlayerRotationData RotationData { get; private set; }
+    
+    [field: SerializeField]
     [field: Range(0f, 2f)]
     public float TimeToBeConsideredConsecutive { get; private set; } = 1f;
 

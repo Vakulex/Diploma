@@ -41,4 +41,6 @@ public class PlayerStateReusableData
         }
         
     }
+
+    public PlayerRotationData RotationData { get; set; }
 }

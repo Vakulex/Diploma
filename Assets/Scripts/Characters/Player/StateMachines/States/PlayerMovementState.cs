@@ -16,9 +16,9 @@ public class PlayerMovementState : IState
     
     private void InitializeData()
     {
-        stateMachine.ReusableData.TimeToReachRotation = movementData.BaseRotationData.TargetRotationReachTime;
+        SetBaseRotationData();
     }
-    
+
     #region IState Methods
     public virtual void Enter()
     {
@@ -123,6 +123,12 @@ public class PlayerMovementState : IState
     #endregion
 
     #region Reusable methods
+    protected void SetBaseRotationData()
+    {
+        stateMachine.ReusableData.RotationData = movementData.BaseRotationData;
+        stateMachine.ReusableData.TimeToReachRotation = stateMachine.ReusableData.RotationData.TargetRotationReachTime;
+    }
+    
     protected Vector3 GetPlayerHorizontalVelocity()
     {
         Vector3 playerHorizontalVelocity = stateMachine.Player.Rigidbody.velocity;
