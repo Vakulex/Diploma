@@ -74,6 +74,15 @@ public class PlayerMovementState : IState
         } 
     }
 
+    public void OnTriggerExit(Collider collider)
+    {
+        if (stateMachine.Player.LayerData.IsGroundLayer(collider.gameObject.layer))
+        {
+            OnContactWithGroundExited(collider);
+            return;
+        }
+    }
+
 
     #endregion
     
@@ -203,7 +212,13 @@ public class PlayerMovementState : IState
     {
         stateMachine.Player.Rigidbody.velocity = Vector3.zero;
     }
-    
+
+    protected void ResetVerticalVelocity()
+    {
+        Vector3 playerHorizontalVelocity = GetPlayerHorizontalVelocity();
+
+        stateMachine.Player.Rigidbody.velocity = playerHorizontalVelocity;
+    }
     
     protected virtual void AddInputActionsCallbacks()
     {
@@ -250,6 +265,11 @@ public class PlayerMovementState : IState
     }
 
     protected virtual void OnContactWithGround(Collider collider)
+    {
+        
+    }
+    
+    protected virtual void OnContactWithGroundExited(Collider collider)
     {
         
     }

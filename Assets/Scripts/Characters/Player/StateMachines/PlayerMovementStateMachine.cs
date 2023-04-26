@@ -11,6 +11,7 @@ public class PlayerMovementStateMachine : StateMachine
     public PlayerMediumStopState MediumStopState { get; }
     public PlayerHardStopState HardStopState { get; }
     public PlayerJumpState JumpState { get; }
+    public PlayerFallState FallState { get; }
 
     public PlayerMovementStateMachine(Player player)
     {
@@ -25,5 +26,6 @@ public class PlayerMovementStateMachine : StateMachine
         MediumStopState = new PlayerMediumStopState(this);
         HardStopState = new PlayerHardStopState(this);
         JumpState = new PlayerJumpState(this);
+        FallState = new PlayerFallState(this);
     }
 }

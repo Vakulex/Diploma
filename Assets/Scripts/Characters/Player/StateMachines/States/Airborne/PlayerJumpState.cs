@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerJumpState : PlayerAirborneState
 {
     private PlayerJumpData _jumpData;
+    private bool _canStartFalling;
     private bool _shouldKeepRotating;
     public PlayerJumpState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
     {
@@ -28,6 +29,8 @@ public class PlayerJumpState : PlayerAirborneState
         base.Exit();
         
         SetBaseRotationData();
+
+        _canStartFalling = false;
     }
 
     public override void PhysicsUpdate()
@@ -39,6 +42,22 @@ public class PlayerJumpState : PlayerAirborneState
         
         if(IsMovingUp()) 
             DecelerateVertically();
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        
+        if (!_canStartFalling && IsMovingUp(0f))
+            _canStartFalling = true;
+        
+        if(!_canStartFalling || GetPlayerVerticalVelocity().y > 0)
+            return;
+            
+        if(GetPlayerVerticalVelocity().y > 0)
+            return;
+        
+        stateMachine.ChangeState(stateMachine.FallState);
     }
 
     #endregion

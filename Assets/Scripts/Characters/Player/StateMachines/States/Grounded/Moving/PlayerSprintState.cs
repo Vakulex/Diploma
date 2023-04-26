@@ -68,7 +68,6 @@ public class PlayerSprintState : PlayerMovingState
     #endregion
     
     #region Reusable Mthods
-
     protected override void AddInputActionsCallbacks()
     {
         base.AddInputActionsCallbacks();
@@ -101,6 +100,13 @@ public class PlayerSprintState : PlayerMovingState
     {
         _shouldResetSprintState = false;
         base.OnJumpStarted(context);
+    }
+
+    protected override void OnFall()
+    {
+        _shouldResetSprintState = false;
+        
+        base.OnFall();
     }
 
     #endregion
