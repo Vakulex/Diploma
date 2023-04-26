@@ -45,6 +45,11 @@ public class Player : MonoBehaviour
         _movementStateMachine.ChangeState(_movementStateMachine.IdleState);
     }
 
+    private void OnTriggerEnter(Collider collider)
+    {
+        _movementStateMachine.OnTriggerEnter(collider);
+    }
+
     private void Update()
     {
         _movementStateMachine.HandleInput();

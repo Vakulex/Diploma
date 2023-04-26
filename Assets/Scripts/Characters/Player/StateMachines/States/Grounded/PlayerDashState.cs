@@ -20,6 +20,7 @@ public class PlayerDashState : PlayerGroundedState
         base.Enter();
 
         stateMachine.ReusableData.MovementSpeedModifier = _dashData.SpeedModifier;
+        stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StrongForce;
 
         stateMachine.ReusableData.RotationData = _dashData.RotationData;
         

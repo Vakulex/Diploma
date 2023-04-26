@@ -12,6 +12,7 @@ public class PlayerIdleState : PlayerGroundedState
         base.Enter();
 
         stateMachine.ReusableData.MovementSpeedModifier = 0f;
+        stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StationaryForce;
         ResetVelocity();
     }
 

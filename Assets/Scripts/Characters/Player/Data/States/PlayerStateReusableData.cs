@@ -6,6 +6,7 @@ public class PlayerStateReusableData
     public float MovementSpeedModifier { get; set; }
     public float MovementDecelerationForce { get; set; }
     public bool ShouldWalk { get; set; }
+    public bool ShouldSprint { get; set; }
 
     private Vector3 _currentTargetRotation;
     private Vector3 _timeToReachRotation;
@@ -41,6 +42,8 @@ public class PlayerStateReusableData
         }
         
     }
+    
+    public Vector3 CurrentJumpForce { get; set; }
 
     public PlayerRotationData RotationData { get; set; }
 }
