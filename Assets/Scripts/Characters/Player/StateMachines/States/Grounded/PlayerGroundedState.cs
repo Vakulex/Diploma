@@ -64,7 +64,7 @@ public class PlayerGroundedState : PlayerMovementState
             stateMachine.Player.ColliderUtility.TriggerColliderData.GroundCheckCollider.bounds.center;
 
         Collider[] overlappedGroundColliders = Physics.OverlapBox(groundColliderCenterInWorldSpace, 
-            groundCheckCollider.bounds.extents, 
+            stateMachine.Player.ColliderUtility.TriggerColliderData.GroundCheckColliderExtents, 
             groundCheckCollider.transform.rotation, 
             stateMachine.Player.LayerData.GroundLayer, 
             QueryTriggerInteraction.Ignore);
@@ -128,8 +128,7 @@ public class PlayerGroundedState : PlayerMovementState
             OnFall();
         
     }
-
-
+    
     protected virtual void OnFall()
     {
         stateMachine.ChangeState(stateMachine.FallState);

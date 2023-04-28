@@ -33,5 +33,15 @@ public class PlayerLightLandState : PlayerLandState
         stateMachine.ChangeState(stateMachine.IdleState);
     }
 
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+        
+        if(!IsMovingHorizontally())
+            return;
+        
+        ResetVelocity();
+    }
+
     #endregion
 }

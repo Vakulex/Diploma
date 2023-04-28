@@ -167,7 +167,7 @@ public class PlayerMovementState : IState
         return new Vector3(stateMachine.ReusableData.MovementInput.x, 0f, stateMachine.ReusableData.MovementInput.y);
     }
     
-    protected float GetMovementSpeed()
+    protected float GetMovementSpeed(bool shouldConsiderSlopes = true)
     {
         return stateMachine.Player.Data.GroundedData.BaseSpeed * stateMachine.ReusableData.MovementSpeedModifier;
     }

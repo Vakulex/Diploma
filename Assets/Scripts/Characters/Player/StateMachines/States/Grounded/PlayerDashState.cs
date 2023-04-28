@@ -24,7 +24,7 @@ public class PlayerDashState : PlayerGroundedState
 
         stateMachine.ReusableData.RotationData = _dashData.RotationData;
         
-        AddForceOnTransitionFromStationaryState();
+        Dash();
 
         _shouldKeepRotating = stateMachine.ReusableData.MovementInput != Vector2.zero;
         
@@ -63,18 +63,21 @@ public class PlayerDashState : PlayerGroundedState
     #endregion
     
     #region Main Methods
-    private void AddForceOnTransitionFromStationaryState()
+    private void Dash()
     {
-        if(stateMachine.ReusableData.MovementInput != Vector2.zero)
-            return;
+        Vector3 dashDirection = stateMachine.Player.transform.forward;
 
-        Vector3 characterRotationDirection = stateMachine.Player.transform.forward;
+        dashDirection.y = 0f;
 
-        characterRotationDirection.y = 0f;
+        UpdateTargetRotation(dashDirection, false);
 
-        UpdateTargetRotation(characterRotationDirection, false);
-
-        stateMachine.Player.Rigidbody.velocity = characterRotationDirection * GetMovementSpeed();
+        if (stateMachine.ReusableData.MovementInput != Vector2.zero)
+        {
+            UpdateTargetRotation(GetMovementInputDirection());
+            dashDirection = GetTargetRotation(stateMachine.ReusableData.CurrentTargetRotation.y);
+        }
+        
+        stateMachine.Player.Rigidbody.velocity = dashDirection * GetMovementSpeed();
     }
 
     private void UpdateConsecutiveDashes()

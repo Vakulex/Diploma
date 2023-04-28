@@ -20,6 +20,12 @@ public class CapsuleColliderUtility
         
         CapsuleColliderData = new CapsuleColliderData();
         CapsuleColliderData.Initialize(gameObject);
+        OnInit();
+    }
+
+    protected virtual void OnInit()
+    {
+        
     }
     
     public void CalculateCapsuleColliderDimensions()

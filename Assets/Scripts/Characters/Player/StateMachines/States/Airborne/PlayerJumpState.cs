@@ -80,6 +80,8 @@ public class PlayerJumpState : PlayerAirborneState
         Vector3 jumpDirection = stateMachine.Player.transform.forward;
         if (_shouldKeepRotating)
         {
+            UpdateTargetRotation(GetMovementInputDirection());
+            
             jumpDirection = GetTargetRotation(stateMachine.ReusableData.CurrentTargetRotation.y);
         }
 
@@ -100,14 +102,14 @@ public class PlayerJumpState : PlayerAirborneState
             if (IsMovingUp())
             {
                 float forceModifier = _jumpData.JumpForceModifierOnSlopeUpwards.Evaluate(groundAngle);
-                jumpForce.x *= jumpDirection.x;
-                jumpForce.z *= jumpDirection.z;
+                jumpForce.x *= forceModifier;
+                jumpForce.z *= forceModifier;
             }
 
             if (IsMovingDown())
             {
                 float forceModifier = _jumpData.JumpForceModifierOnSlopeDownwards.Evaluate(groundAngle);
-                jumpForce.x *= jumpDirection.y;
+                jumpForce.y *= forceModifier;
             }
         }
         ResetVelocity();
