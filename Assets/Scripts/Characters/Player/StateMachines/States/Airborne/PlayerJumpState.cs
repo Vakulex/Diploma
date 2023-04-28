@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerJumpState : PlayerAirborneState
 {
@@ -113,5 +114,14 @@ public class PlayerJumpState : PlayerAirborneState
         
         stateMachine.Player.Rigidbody.AddForce(jumpForce, ForceMode.VelocityChange);
     }
+    #endregion
+
+    #region Input Methods
+
+    protected override void OnMovementCanceled(InputAction.CallbackContext context)
+    {
+        
+    }
+
     #endregion
 }

@@ -15,8 +15,8 @@ public class PlayerRunState : PlayerMovingState
 
     public override void Enter()
     {
-        base.Enter();
         stateMachine.ReusableData.MovementSpeedModifier = movementData.RunData.SpeedModifier;
+        base.Enter();
         stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.MediumForce;
         _startTime = Time.time;
     }
@@ -61,6 +61,7 @@ public class PlayerRunState : PlayerMovingState
     protected override void OnMovementCanceled(InputAction.CallbackContext context)
     {
         stateMachine.ChangeState(stateMachine.MediumStopState);
+        base.OnMovementCanceled(context);
     }
     #endregion
 }

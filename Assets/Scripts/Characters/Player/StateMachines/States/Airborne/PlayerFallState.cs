@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerFallState : PlayerAirborneState
 {
     private PlayerFallData _fallData;
+    private Vector3 _playerPositionOnEnter;
     public PlayerFallState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
     {
         _fallData = airborneData.FallData;
@@ -13,6 +14,7 @@ public class PlayerFallState : PlayerAirborneState
     {
         base.Enter();
 
+        _playerPositionOnEnter = stateMachine.Player.transform.position;
         stateMachine.ReusableData.MovementSpeedModifier = 0f;
 
         ResetVerticalVelocity();
@@ -31,6 +33,28 @@ public class PlayerFallState : PlayerAirborneState
     {
         
     }
+
+    protected override void OnContactWithGround(Collider collider)
+    {
+        float fallDistance = Mathf.Abs(_playerPositionOnEnter.y - stateMachine.Player.transform.position.y);
+
+        if (fallDistance < _fallData.MinimalDistanceToBeConsideredHardFall)
+        {
+            stateMachine.ChangeState(stateMachine.LightLandState);
+            return;
+        }
+
+        if (stateMachine.ReusableData.ShouldWalk && 
+            !stateMachine.ReusableData.ShouldSprint ||
+            stateMachine.ReusableData.MovementInput == Vector2.zero)
+        {
+            stateMachine.ChangeState(stateMachine.HardLandState);
+            return;
+        }
+        
+        stateMachine.ChangeState(stateMachine.RollState);
+    }
+
     #endregion
 
     #region Main Methods

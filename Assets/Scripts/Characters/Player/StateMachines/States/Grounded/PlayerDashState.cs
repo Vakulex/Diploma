@@ -17,9 +17,9 @@ public class PlayerDashState : PlayerGroundedState
 
     public override void Enter()
     {
+        stateMachine.ReusableData.MovementSpeedModifier = _dashData.SpeedModifier;
         base.Enter();
 
-        stateMachine.ReusableData.MovementSpeedModifier = _dashData.SpeedModifier;
         stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StrongForce;
 
         stateMachine.ReusableData.RotationData = _dashData.RotationData;
@@ -116,12 +116,6 @@ public class PlayerDashState : PlayerGroundedState
     #endregion
     
     #region Input Methods
-
-    protected override void OnMovementCanceled(InputAction.CallbackContext context)
-    {
-        base.OnMovementCanceled(context);
-    }
-
     protected override void OnDashStarted(InputAction.CallbackContext context)
     {
         

@@ -14,6 +14,9 @@ public class Player : MonoBehaviour
     [field: SerializeField] public PlayerCapsuleColliderUtility ColliderUtility { get; private set; }
     [field: SerializeField] public PlayerLayerData LayerData { get; private set; }
     
+    [field: Header("Camera")]
+    [field: SerializeField] public PlayerCameraRecentringUtility CameraRecentringUtility { get; private set; }
+    
     public PlayerInput Input { get; private set; }
 
     public Transform MainCameraTransform { get; private set; }
@@ -24,10 +27,11 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        CameraRecentringUtility.Initialize();
+        ColliderUtility.Initialize(gameObject);
         Rigidbody = GetComponent<Rigidbody>();
         Input = GetComponent<PlayerInput>();
         
-        ColliderUtility.Initialize(gameObject);
         ColliderUtility.CalculateCapsuleColliderDimensions();
         
         MainCameraTransform = Camera.main.transform;

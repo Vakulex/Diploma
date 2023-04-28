@@ -13,9 +13,9 @@ public class PlayerRollState : PlayerLandState
 
     public override void Enter()
     {
+        stateMachine.ReusableData.MovementSpeedModifier = _rollData.SpeedModifier;
         base.Enter();
 
-        stateMachine.ReusableData.MovementSpeedModifier = _rollData.SpeedModifier;
         stateMachine.ReusableData.ShouldSprint = false;
     }
 

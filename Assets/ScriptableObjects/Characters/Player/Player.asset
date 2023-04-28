@@ -15,10 +15,35 @@ MonoBehaviour:
   <GroundedData>k__BackingField:
     <BaseSpeed>k__BackingField: 5
     <GroundToFallRayDistance>k__BackingField: 1
+    <SidewaysCameraRecenteringData>k__BackingField:
+    - <MinAngle>k__BackingField: 0
+      <MaxAngle>k__BackingField: 80
+      <WaitTime>k__BackingField: -1
+      <RecenteringTime>k__BackingField: -1
+    - <MinAngle>k__BackingField: 80
+      <MaxAngle>k__BackingField: 90
+      <WaitTime>k__BackingField: 0
+      <RecenteringTime>k__BackingField: 0.3
+    <BackwardsCameraRecenteringData>k__BackingField:
+    - <MinAngle>k__BackingField: 80
+      <MaxAngle>k__BackingField: 90
+      <WaitTime>k__BackingField: 0
+      <RecenteringTime>k__BackingField: 0.5
     <BaseRotationData>k__BackingField:
       <TargetRotationReachTime>k__BackingField: {x: 0, y: 0.14, z: 0}
     <WalkData>k__BackingField:
       <SpeedModifier>k__BackingField: 0.255
+      <BackwardsCameraRecenteringData>k__BackingField:
+      - <MinAngle>k__BackingField: 80
+        <MaxAngle>k__BackingField: 90
+        <WaitTime>k__BackingField: -1
+        <RecenteringTime>k__BackingField: -1
+    <IdleData>k__BackingField:
+      <BackwardsCameraRecenteringData>k__BackingField:
+      - <MinAngle>k__BackingField: 80
+        <MaxAngle>k__BackingField: 90
+        <WaitTime>k__BackingField: 0.25
+        <RecenteringTime>k__BackingField: 0.5
     <RunData>k__BackingField:
       <SpeedModifier>k__BackingField: 1
     <SprintData>k__BackingField:
@@ -36,6 +61,8 @@ MonoBehaviour:
       <LightDecelerationForce>k__BackingField: 5
       <MediumDecelerationForce>k__BackingField: 6.5
       <HardDecelerationForce>k__BackingField: 5
+    <RollData>k__BackingField:
+      <SpeedModifier>k__BackingField: 1
   <AirborneData>k__BackingField:
     <JumpData>k__BackingField:
       <RotationData>k__BackingField:
@@ -139,3 +166,6 @@ MonoBehaviour:
       <MediumForce>k__BackingField: {x: 3.5, y: 5, z: 3.5}
       <StrongForce>k__BackingField: {x: 5, y: 5, z: 5}
       <DecelerationForce>k__BackingField: 1.8
+    <FallData>k__BackingField:
+      <FallSpeedLimit>k__BackingField: 12
+      <MinimalDistanceToBeConsideredHardFall>k__BackingField: 3

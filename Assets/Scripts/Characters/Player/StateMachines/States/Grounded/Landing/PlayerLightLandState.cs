@@ -10,9 +10,9 @@ public class PlayerLightLandState : PlayerLandState
 
     public override void Enter()
     {
+        stateMachine.ReusableData.MovementSpeedModifier = 0f;
         base.Enter();
 
-        stateMachine.ReusableData.MovementSpeedModifier = 0f;
 
         stateMachine.ReusableData.CurrentJumpForce = airborneData.JumpData.StationaryForce;
         

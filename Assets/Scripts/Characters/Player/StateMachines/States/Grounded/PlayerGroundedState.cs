@@ -17,6 +17,7 @@ public class PlayerGroundedState : PlayerMovementState
         base.Enter();
 
         UpdateShouldSprintState();
+        UpdateCameraRecenteringState(stateMachine.ReusableData.MovementInput);
     }
 
     public override void PhysicsUpdate()
@@ -77,7 +78,6 @@ public class PlayerGroundedState : PlayerMovementState
     protected override void AddInputActionsCallbacks()
     {
         base.AddInputActionsCallbacks();
-        stateMachine.Player.Input.PlayerActions.Movement.canceled += OnMovementCanceled;
 
         stateMachine.Player.Input.PlayerActions.Dash.started += OnDashStarted;
         stateMachine.Player.Input.PlayerActions.Jump.started += OnJumpStarted;
@@ -87,7 +87,6 @@ public class PlayerGroundedState : PlayerMovementState
     protected override void RemoveInputActionsCallbacks()
     {
         base.RemoveInputActionsCallbacks();
-        stateMachine.Player.Input.PlayerActions.Movement.canceled -= OnMovementCanceled;
 
         stateMachine.Player.Input.PlayerActions.Dash.canceled -= OnDashStarted;
         stateMachine.Player.Input.PlayerActions.Jump.started -= OnJumpStarted;
@@ -149,12 +148,6 @@ public class PlayerGroundedState : PlayerMovementState
     #endregion
 
     #region Input Methods
-    protected virtual void OnMovementCanceled(InputAction.CallbackContext context)
-    {
-        stateMachine.ChangeState(stateMachine.IdleState);
-    }
-    
-    
     protected virtual void OnDashStarted(InputAction.CallbackContext obj)
     {
         stateMachine.ChangeState(stateMachine.DashState);
