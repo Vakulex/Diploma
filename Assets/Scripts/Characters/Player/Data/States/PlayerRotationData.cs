@@ -1,8 +1,11 @@
 using System;
 using UnityEngine;
 
-[Serializable]
-public class PlayerRotationData
+namespace MovementSystem
 {
-    [field: SerializeField] public Vector3 TargetRotationReachTime { get; private set; }
+    [Serializable]
+    public class PlayerRotationData
+    {
+        [field: SerializeField] public Vector3 TargetRotationReachTime { get; private set; }
+    }
 }

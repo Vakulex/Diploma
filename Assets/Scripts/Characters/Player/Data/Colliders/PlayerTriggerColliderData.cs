@@ -1,15 +1,18 @@
 using System;
 using UnityEngine;
 
-[Serializable]
-public class PlayerTriggerColliderData
+namespace MovementSystem
 {
-    [field: SerializeField] public BoxCollider GroundCheckCollider { get; private set; }
-    
-    public Vector3 GroundCheckColliderExtents { get; private set; }
-
-    public void Initialize()
+    [Serializable]
+    public class PlayerTriggerColliderData
     {
-        GroundCheckColliderExtents = GroundCheckCollider.bounds.extents;
+        [field: SerializeField] public BoxCollider GroundCheckCollider { get; private set; }
+
+        public Vector3 GroundCheckColliderVerticalExtents { get; private set; }
+
+        public void Initialize()
+        {
+            GroundCheckColliderVerticalExtents = GroundCheckCollider.bounds.extents;
+        }
     }
 }

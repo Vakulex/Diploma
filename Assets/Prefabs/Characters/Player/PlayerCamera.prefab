@@ -161,9 +161,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1551647433414216643}
   - component: {fileID: 488297493650850343}
-  - component: {fileID: 8094747235136220311}
   - component: {fileID: 4241529534373918871}
   - component: {fileID: 4892066272229118155}
+  - component: {fileID: 7425107259581925150}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
@@ -233,23 +233,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 979636143229983869}
---- !u!114 &8094747235136220311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7259304779066433038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6921165267b08c248b2cfd285882ec8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _defaultDistance: 6
-  _maxDistance: 6
-  _minDistance: 1
-  _smoothing: 4
-  _zoomSensitivity: 1
 --- !u!114 &4241529534373918871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,3 +279,20 @@ MonoBehaviour:
   AutoEnableInputs: 1
   XYAxis: {fileID: -2961514251372081708, guid: efcf836ea38eb2a4ba7c122a5cf069e3, type: 3}
   ZAxis: {fileID: -8383354435280157, guid: efcf836ea38eb2a4ba7c122a5cf069e3, type: 3}
+--- !u!114 &7425107259581925150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7259304779066433038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4597c6ea99d13c8498bde9a027bc4166, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultDistance: 6
+  _minimumDistance: 1
+  _maximumDistance: 6
+  _smoothing: 4
+  _zoomSensitivity: 1

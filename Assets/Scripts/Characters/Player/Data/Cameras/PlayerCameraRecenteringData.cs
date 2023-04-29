@@ -1,16 +1,19 @@
 using System;
 using UnityEngine;
 
-[Serializable]
-public class PlayerCameraRecenteringData
+namespace MovementSystem
 {
-    [field: SerializeField] [field: Range(0f, 360f)] public float MinAngle { get; private set; }
-    [field: SerializeField] [field: Range(0f, 360f)] public float MaxAngle { get; private set; }
-    [field: SerializeField] [field: Range(-1f, 20f)] public float WaitTime { get; private set; }
-    [field: SerializeField] [field: Range(-1f, 20f)] public float RecenteringTime { get; private set; }
-
-    public bool IsWithinRange(float angle)
+    [Serializable]
+    public class PlayerCameraRecenteringData
     {
-        return angle >= MinAngle && angle <= MaxAngle;
+        [field: SerializeField] [field: Range(0f, 360f)] public float MinimumAngle { get; private set; }
+        [field: SerializeField] [field: Range(0f, 360f)] public float MaximumAngle { get; private set; }
+        [field: SerializeField] [field: Range(-1f, 20f)] public float WaitTime { get; private set; }
+        [field: SerializeField] [field: Range(-1f, 20f)] public float RecenteringTime { get; private set; }
+
+        public bool IsWithinRange(float angle)
+        {
+            return angle >= MinimumAngle && angle <= MaximumAngle;
+        }
     }
 }
