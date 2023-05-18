@@ -6,6 +6,7 @@ namespace MovementSystem
 {
     public class PlayerMovementState : IState
     {
+        private bool _isWeaponDrawn = false;
         protected PlayerMovementStateMachine StateMachine;
 
         protected readonly PlayerGroundedData GroundedData;
@@ -102,6 +103,11 @@ namespace MovementSystem
             StateMachine.Player.Animator.SetBool(animationHash, true);
         }
 
+        protected void StartAnimation(int hash, int value)
+        {
+            StateMachine.Player.Animator.SetInteger(hash, value);
+        }
+
         protected void StopAnimation(int animationHash)
         {
             StateMachine.Player.Animator.SetBool(animationHash, false);
@@ -112,6 +118,7 @@ namespace MovementSystem
             StateMachine.Player.Input.PlayerActions.WalkToggle.started += OnWalkToggleStarted;
 
             StateMachine.Player.Input.PlayerActions.Look.started += OnMouseMovementStarted;
+            StateMachine.Player.Input.PlayerActions.Attack.started += OnAttackStarted;
 
             StateMachine.Player.Input.PlayerActions.Movement.performed += OnMovementPerformed;
             StateMachine.Player.Input.PlayerActions.Movement.canceled += OnMovementCanceled;
@@ -122,9 +129,22 @@ namespace MovementSystem
             StateMachine.Player.Input.PlayerActions.WalkToggle.started -= OnWalkToggleStarted;
 
             StateMachine.Player.Input.PlayerActions.Look.started -= OnMouseMovementStarted;
+            StateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
 
             StateMachine.Player.Input.PlayerActions.Movement.performed -= OnMovementPerformed;
             StateMachine.Player.Input.PlayerActions.Movement.canceled -= OnMovementCanceled;
+        }
+        
+        protected virtual void OnAttackStarted(InputAction.CallbackContext context)
+        {
+            StateMachine.ChangeState(StateMachine.AttackingState);
+        }
+        
+        protected void OnDrawWeapon(InputAction.CallbackContext context)
+        {
+            _isWeaponDrawn = !_isWeaponDrawn;
+            
+            StateMachine.Player.Weapon.gameObject.SetActive(_isWeaponDrawn);
         }
 
         protected virtual void OnWalkToggleStarted(InputAction.CallbackContext context)

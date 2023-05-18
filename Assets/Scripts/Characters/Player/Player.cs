@@ -7,7 +7,11 @@ namespace MovementSystem
     public class Player : MonoBehaviour
     {
         [field: Header("References")]
-        [field: SerializeField] public PlayerSo Data { get; private set; }
+        [field: SerializeField] public PlayerSO Data { get; private set; }
+        [field: SerializeField] public Weapon Weapon { get; set; }
+        
+        [field: Header("Inventory")]
+        [field: SerializeField] public PlayerInventory PlayerInventory { get; set; }
 
         [field: Header("Collisions")]
         [field: SerializeField] public PlayerLayerData LayerData { get; private set; }

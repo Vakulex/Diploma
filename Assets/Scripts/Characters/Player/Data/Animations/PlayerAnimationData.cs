@@ -13,6 +13,7 @@ namespace MovementSystem
         [SerializeField] private string _stoppingParameterName = "IStopping";
         [SerializeField] private string _landingParameterName = "ILanding";
         [SerializeField] private string _airborneParameterName = "IAirborne";
+        [SerializeField] private string _attackingParameterName = "IsAttacking";
 
         [Header("Grounded Parameter Names")]
         [SerializeField] private string _idleParameterName = "IsIdling";
@@ -28,11 +29,15 @@ namespace MovementSystem
         [Header("Airborne Parameter Names")]
         [SerializeField] private string _fallParameterName = "IsFalling";
 
+        [FormerlySerializedAs("_attackingParameterParameterName")] [FormerlySerializedAs("_attackParameterName")] [Header("Combat Parameter Names")] [SerializeField]
+        private string _attackingCounterParameterName = "AttackCounter";
+
         public int GroundedParameterHash { get; private set; }
         public int MovingParameterHash { get; private set; }
         public int StoppingParameterHash { get; private set; }
         public int LandingParameterHash { get; private set; }
         public int AirborneParameterHash { get; private set; }
+        public int AttackParameterHash { get; private set; }
 
         public int IdleParameterHash { get; private set; }
         public int DashParameterHash { get; private set; }
@@ -45,6 +50,8 @@ namespace MovementSystem
         public int HardLandParameterHash { get; private set; }
 
         public int FallParameterHash { get; private set; }
+        
+        public int AttackingCounterParameterHash { get; private set; }
 
         public void Initialize()
         {
@@ -53,6 +60,7 @@ namespace MovementSystem
             StoppingParameterHash = Animator.StringToHash(_stoppingParameterName);
             LandingParameterHash = Animator.StringToHash(_landingParameterName);
             AirborneParameterHash = Animator.StringToHash(_airborneParameterName);
+            AttackParameterHash = Animator.StringToHash(_attackingParameterName);
 
             IdleParameterHash = Animator.StringToHash(_idleParameterName);
             DashParameterHash = Animator.StringToHash(_dashParameterName);
@@ -65,6 +73,8 @@ namespace MovementSystem
             HardLandParameterHash = Animator.StringToHash(_hardLandParameterName);
 
             FallParameterHash = Animator.StringToHash(_fallParameterName);
+
+            AttackingCounterParameterHash = Animator.StringToHash(_attackingCounterParameterName);
         }
     }
 }

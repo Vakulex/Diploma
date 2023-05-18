@@ -22,6 +22,7 @@ namespace MovementSystem
 
         public PlayerJumpingState JumpingState { get; }
         public PlayerFallingState FallingState { get; }
+        public PlayerAttackingState AttackingState { get; }
 
         public PlayerMovementStateMachine(Player player)
         {
@@ -45,6 +46,8 @@ namespace MovementSystem
 
             JumpingState = new PlayerJumpingState(this);
             FallingState = new PlayerFallingState(this);
+
+            AttackingState = new PlayerAttackingState(this);
         }
     }
 }

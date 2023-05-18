@@ -12,9 +12,8 @@ namespace MovementSystem
         public override void Enter()
         {
             base.Enter();
-
             StartAnimation(StateMachine.Player.AnimationData.GroundedParameterHash);
-
+            
             UpdateShouldSprintState();
 
             UpdateCameraRecenteringState(StateMachine.ReusableData.MovementInput);
@@ -100,6 +99,7 @@ namespace MovementSystem
             base.AddInputActionsCallbacks();
 
             StateMachine.Player.Input.PlayerActions.Dash.started += OnDashStarted;
+            StateMachine.Player.Input.PlayerActions.DrawWeapon.started += OnDrawWeapon;
 
             StateMachine.Player.Input.PlayerActions.Jump.started += OnJumpStarted;
         }
@@ -109,6 +109,7 @@ namespace MovementSystem
             base.RemoveInputActionsCallbacks();
 
             StateMachine.Player.Input.PlayerActions.Dash.started -= OnDashStarted;
+            StateMachine.Player.Input.PlayerActions.DrawWeapon.started -= OnDrawWeapon;
 
             StateMachine.Player.Input.PlayerActions.Jump.started -= OnJumpStarted;
         }
