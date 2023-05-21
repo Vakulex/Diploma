@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -6,19 +7,26 @@ public class PlayerInventory : MonoBehaviour
 {
     public TextMeshProUGUI Counter;
     public List<RestoreHealthItem> StoredHealItems;
+    public int HealAmount = 20;
+    private PlayerHealth _playerHealth;
+    
     
     private void Awake()
     {
         StoredHealItems = new List<RestoreHealthItem>();
+        _playerHealth = GetComponent<PlayerHealth>();
     }
 
     public void UseHealItem()
     {
+        int lastItem = StoredHealItems.FindLastIndex(item => item);
+        if(lastItem == -1)
+            return;
+        HealItem healItem = new HealItem();
         if (StoredHealItems.Count == 0)
             return;    
-        RestoreHealthItem item = StoredHealItems[StoredHealItems.Count + 1];
-        item.playerHealth.ChangeCurrentHealthAmount(item.RestoreHealth());
-        StoredHealItems.RemoveAt(StoredHealItems.Count);
+        _playerHealth.ChangeCurrentHealthAmount(healItem.RestoreHealth(HealAmount));
+        StoredHealItems.RemoveAt(lastItem);
         UpdateUI();
     }
 

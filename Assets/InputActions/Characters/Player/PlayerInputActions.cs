@@ -107,6 +107,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseHealItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""c8bf25ed-9a26-4d70-be81-e3fbb021b522"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -340,6 +349,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""64d92fb1-8d57-4c37-a02e-9e7adaf7a803"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""UseHealItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9031bfab-4541-41c6-92fb-3aacdff6bd25"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""UseHealItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -385,6 +416,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_DrawWeapon = m_Player.FindAction("DrawWeapon", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+        m_Player_UseHealItem = m_Player.FindAction("UseHealItem", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -455,6 +487,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_DrawWeapon;
     private readonly InputAction m_Player_Attack;
+    private readonly InputAction m_Player_UseHealItem;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -468,6 +501,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @DrawWeapon => m_Wrapper.m_Player_DrawWeapon;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
+        public InputAction @UseHealItem => m_Wrapper.m_Player_UseHealItem;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -504,6 +538,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
+            @UseHealItem.started += instance.OnUseHealItem;
+            @UseHealItem.performed += instance.OnUseHealItem;
+            @UseHealItem.canceled += instance.OnUseHealItem;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -535,6 +572,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
+            @UseHealItem.started -= instance.OnUseHealItem;
+            @UseHealItem.performed -= instance.OnUseHealItem;
+            @UseHealItem.canceled -= instance.OnUseHealItem;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -581,5 +621,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnDrawWeapon(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnUseHealItem(InputAction.CallbackContext context);
     }
 }

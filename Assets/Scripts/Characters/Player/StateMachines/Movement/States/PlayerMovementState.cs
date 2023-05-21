@@ -119,6 +119,7 @@ namespace MovementSystem
 
             StateMachine.Player.Input.PlayerActions.Look.started += OnMouseMovementStarted;
             StateMachine.Player.Input.PlayerActions.Attack.started += OnAttackStarted;
+            StateMachine.Player.Input.PlayerActions.UseHealItem.started += OnHealItemUsed;
 
             StateMachine.Player.Input.PlayerActions.Movement.performed += OnMovementPerformed;
             StateMachine.Player.Input.PlayerActions.Movement.canceled += OnMovementCanceled;
@@ -130,11 +131,17 @@ namespace MovementSystem
 
             StateMachine.Player.Input.PlayerActions.Look.started -= OnMouseMovementStarted;
             StateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
+            StateMachine.Player.Input.PlayerActions.UseHealItem.started -= OnHealItemUsed;
 
             StateMachine.Player.Input.PlayerActions.Movement.performed -= OnMovementPerformed;
             StateMachine.Player.Input.PlayerActions.Movement.canceled -= OnMovementCanceled;
         }
-        
+
+        private void OnHealItemUsed(InputAction.CallbackContext context)
+        {
+            StateMachine.Player.PlayerInventory.UseHealItem();
+        }
+
         protected virtual void OnAttackStarted(InputAction.CallbackContext context)
         {
             StateMachine.ChangeState(StateMachine.AttackingState);
