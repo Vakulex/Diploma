@@ -10,6 +10,7 @@ namespace MovementSystem
         public float MovementSpeedModifier { get; set; } = 1f;
         public float MovementOnSlopesSpeedModifier { get; set; } = 1f;
         public float MovementDecelerationForce { get; set; } = 1f;
+        public bool IsAttacking { get; set; } = false;
 
         public List<PlayerCameraRecenteringData> SidewaysCameraRecenteringData { get; set; }
         public List<PlayerCameraRecenteringData> BackwardsCameraRecenteringData { get; set; }

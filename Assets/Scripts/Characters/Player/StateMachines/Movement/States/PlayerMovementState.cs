@@ -6,7 +6,7 @@ namespace MovementSystem
 {
     public class PlayerMovementState : IState
     {
-        private bool _isWeaponDrawn = false;
+        public bool IsWeaponDrawn = false;
         protected PlayerMovementStateMachine StateMachine;
 
         protected readonly PlayerGroundedData GroundedData;
@@ -144,14 +144,17 @@ namespace MovementSystem
 
         protected virtual void OnAttackStarted(InputAction.CallbackContext context)
         {
-            StateMachine.ChangeState(StateMachine.AttackingState);
+            if(IsWeaponDrawn)
+                StateMachine.ChangeState(StateMachine.AttackingState);
+            else
+                OnDrawWeapon(context);
         }
         
         protected void OnDrawWeapon(InputAction.CallbackContext context)
         {
-            _isWeaponDrawn = !_isWeaponDrawn;
+            IsWeaponDrawn = !IsWeaponDrawn;
             
-            StateMachine.Player.Weapon.gameObject.SetActive(_isWeaponDrawn);
+            StateMachine.Player.PlayerWeapon.gameObject.SetActive(IsWeaponDrawn);
         }
 
         protected virtual void OnWalkToggleStarted(InputAction.CallbackContext context)

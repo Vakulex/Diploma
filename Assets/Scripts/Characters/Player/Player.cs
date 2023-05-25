@@ -8,7 +8,7 @@ namespace MovementSystem
     {
         [field: Header("References")]
         [field: SerializeField] public PlayerSO Data { get; private set; }
-        [field: SerializeField] public Weapon Weapon { get; set; }
+        [field: SerializeField] public PlayerWeapon PlayerWeapon { get; set; }
         
         [field: Header("Inventory")]
         [field: SerializeField] public PlayerInventory PlayerInventory { get; set; }
@@ -30,7 +30,7 @@ namespace MovementSystem
 
         public Transform MainCameraTransform { get; private set; }
 
-        private PlayerMovementStateMachine _movementStateMachine;
+        public PlayerMovementStateMachine MovementStateMachine;
 
         private void Awake()
         {
@@ -45,49 +45,49 @@ namespace MovementSystem
 
             MainCameraTransform = Camera.main.transform;
 
-            _movementStateMachine = new PlayerMovementStateMachine(this);
+            MovementStateMachine = new PlayerMovementStateMachine(this);
         }
 
         private void Start()
         {
-            _movementStateMachine.ChangeState(_movementStateMachine.IdlingState);
+            MovementStateMachine.ChangeState(MovementStateMachine.IdlingState);
         }
 
         private void Update()
         {
-            _movementStateMachine.HandleInput();
+            MovementStateMachine.HandleInput();
 
-            _movementStateMachine.Update();
+            MovementStateMachine.Update();
         }
 
         private void FixedUpdate()
         {
-            _movementStateMachine.PhysicsUpdate();
+            MovementStateMachine.PhysicsUpdate();
         }
 
         private void OnTriggerEnter(Collider collider)
         {
-            _movementStateMachine.OnTriggerEnter(collider);
+            MovementStateMachine.OnTriggerEnter(collider);
         }
 
         private void OnTriggerExit(Collider collider)
         {
-            _movementStateMachine.OnTriggerExit(collider);
+            MovementStateMachine.OnTriggerExit(collider);
         }
 
         public void OnMovementStateAnimationEnterEvent()
         {
-            _movementStateMachine.OnAnimationEnterEvent();
+            MovementStateMachine.OnAnimationEnterEvent();
         }
 
         public void OnMovementStateAnimationExitEvent()
         {
-            _movementStateMachine.OnAnimationExitEvent();
+            MovementStateMachine.OnAnimationExitEvent();
         }
 
         public void OnMovementStateAnimationTransitionEvent()
         {
-            _movementStateMachine.OnAnimationTransitionEvent();
+            MovementStateMachine.OnAnimationTransitionEvent();
         }
     }
 }
