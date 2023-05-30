@@ -11,6 +11,7 @@ namespace MovementSystem
             base.Enter();
 
             StartAnimation(StateMachine.Player.AnimationData.MovingParameterHash);
+            StateMachine.Player.AudioSource.enabled = true;
         }
 
         public override void Exit()
@@ -18,6 +19,7 @@ namespace MovementSystem
             base.Exit();
 
             StopAnimation(StateMachine.Player.AnimationData.MovingParameterHash);
+            StateMachine.Player.AudioSource.enabled = false;
         }
     }
 }

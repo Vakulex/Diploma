@@ -21,6 +21,9 @@ namespace MovementSystem
 
         [field: Header("Animations")]
         [field: SerializeField] public PlayerAnimationData AnimationData { get; private set; }
+        
+        [field: Header("Audio")]
+        [field: SerializeField] public AudioSource AudioSource { get; set; }
 
         public Rigidbody Rigidbody { get; private set; }
         public Animator Animator { get; private set; }
@@ -39,6 +42,7 @@ namespace MovementSystem
 
             Rigidbody = GetComponent<Rigidbody>();
             Animator = GetComponentInChildren<Animator>();
+            AudioSource = GetComponent<AudioSource>();
 
             Input = GetComponent<PlayerInput>();
             ResizableCapsuleCollider = GetComponent<PlayerResizableCapsuleCollider>();

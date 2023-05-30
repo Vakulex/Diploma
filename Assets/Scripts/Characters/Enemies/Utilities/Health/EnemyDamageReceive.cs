@@ -10,11 +10,7 @@ public class EnemyDamageReceive : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision other)
-    { 
-        /*
-        Debug.Log("HIT! :" + other.gameObject);
-        Debug.Log("HIT! Collider: " + other.collider.gameObject);
-        */
+    {
         if (other.collider.gameObject.CompareTag(weaponTag))
         {
             var player = other.gameObject.GetComponent<Player>();

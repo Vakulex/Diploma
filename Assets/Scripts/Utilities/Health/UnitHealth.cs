@@ -7,37 +7,38 @@ public class UnitHealth : MonoBehaviour
     [SerializeField] private Slider _healthBar;
     [SerializeField]
     private int _maxHealth = 100;
-    private int _health;
+    private int health;
     
     public int Health
     {
-        get => _health;
+        get => health;
         set
         {
-            _health = Math.Clamp(value, 0, _maxHealth);
+            health = Math.Clamp(value, 0, _maxHealth);
             if(_healthBar != null)
-                _healthBar.value = _health;
-            Debug.Log(gameObject.name + " Health changed. Current amount: " + _health);
+                _healthBar.value = health;
+            Debug.Log(gameObject.name + " Health changed. Current amount: " + health);
         }
     }
 
-    private void Start()
+    protected virtual void Awake()
     {
         InitHealth();
+        Debug.Log("HEALTH: " + Health);
     }
 
     private void InitHealth()
     {
-        _health = _maxHealth;
+        Health = _maxHealth;
         if (_healthBar == null) return;
         _healthBar.maxValue = _maxHealth;
-        _healthBar.value = _health;
+        _healthBar.value = Health;
     }
 
     public virtual void SetHealth(int amount)
     {
         _maxHealth = amount;
-        _health = _maxHealth;
+        Health = _maxHealth;
         Debug.Log("Health amount set: " + _maxHealth);
     }
 
