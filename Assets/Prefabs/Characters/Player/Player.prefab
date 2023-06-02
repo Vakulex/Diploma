@@ -40,7 +40,7 @@ Transform:
   - {fileID: 6255932931833478266}
   - {fileID: 5667805095081459234}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6294712851035701496
 Rigidbody:
@@ -89,9 +89,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.2
-  m_Height: 1.8
+  m_Height: 1.9
   m_Direction: 1
-  m_Center: {x: 0, y: 1.16, z: 0}
+  m_Center: {x: 0, y: 1.31, z: 0}
 --- !u!114 &7847763721462030398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,12 +117,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <DefaultColliderData>k__BackingField:
-    <Height>k__BackingField: 1.8
-    <CenterY>k__BackingField: 1.16
+    <Height>k__BackingField: 1.9
+    <CenterY>k__BackingField: 1.31
     <Radius>k__BackingField: 0.2
   <SlopeData>k__BackingField:
     <StepHeightPercentage>k__BackingField: 0
-    <FloatRayDistance>k__BackingField: 2
+    <FloatRayDistance>k__BackingField: 2.0137656
     <StepReachForce>k__BackingField: 26
   <TriggerColliderData>k__BackingField:
     <GroundCheckCollider>k__BackingField: {fileID: 7765898114807692509}
@@ -214,8 +214,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Data>k__BackingField: {fileID: 11400000, guid: 8abb7b47fbbb7ff499b61b49c7131b51,
     type: 2}
-  <PlayerWeapon>k__BackingField: {fileID: 0}
-  <PlayerInventory>k__BackingField: {fileID: 4313271689251032399}
+  <PlayerWeapon>k__BackingField: {fileID: 6693210835127550784}
+  <PauseMenu>k__BackingField: {fileID: 0}
   <LayerData>k__BackingField:
     <GroundLayer>k__BackingField:
       serializedVersion: 2
@@ -364,7 +364,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3949804142903590312}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -533,7 +533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9233cd345cff7144f9be1f423e44945d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponDamage: 10
+  _weaponDamage: 50
 --- !u!65 &5773008172717117822
 BoxCollider:
   m_ObjectHideFlags: 0

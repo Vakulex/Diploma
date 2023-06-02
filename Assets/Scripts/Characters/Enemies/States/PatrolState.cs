@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class PatrolState : StateMachineBehaviour
 {
     private float _timer;
-    private List<Transform> wayPoints = new List<Transform>();
+    private List<GameObject> wayPoints = new List<GameObject>();
     private NavMeshAgent _agent;
     private Transform _player;
     private float _chaseRange = 15;
@@ -14,8 +14,9 @@ public class PatrolState : StateMachineBehaviour
         _agent = animator.GetComponent<NavMeshAgent>();
         _timer = 0;
         _player = GameObject.FindGameObjectWithTag("Player").transform;
-        GameObject go = GameObject.FindGameObjectWithTag("Waypoints");
-        foreach (Transform wp in go.transform)
+        List<GameObject> go = new List<GameObject>();
+        go.AddRange(GameObject.FindGameObjectsWithTag("Waypoints"));
+        foreach (GameObject wp in go)
         {
             wayPoints.Add(wp);
         }
@@ -41,7 +42,11 @@ public class PatrolState : StateMachineBehaviour
 
     private void ChangeRandomWaypoint()
     {
-        _agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
+        if(wayPoints.Count < 0)
+            return;
+        if(wayPoints == null)
+            return;
+        _agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].transform.position);
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
