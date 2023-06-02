@@ -9,6 +9,7 @@ namespace MovementSystem
         [field: Header("References")]
         [field: SerializeField] public PlayerSO Data { get; private set; }
         [field: SerializeField] public PlayerWeapon PlayerWeapon { get; set; }
+        [field: SerializeField] public GameObject PauseMenu { get; set; }
         
         [field: Header("Inventory")]
         [field: SerializeField] public PlayerInventory PlayerInventory { get; set; }

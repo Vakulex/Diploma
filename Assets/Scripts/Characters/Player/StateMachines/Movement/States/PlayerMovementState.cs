@@ -120,6 +120,7 @@ namespace MovementSystem
             StateMachine.Player.Input.PlayerActions.Look.started += OnMouseMovementStarted;
             StateMachine.Player.Input.PlayerActions.Attack.started += OnAttackStarted;
             StateMachine.Player.Input.PlayerActions.UseHealItem.started += OnHealItemUsed;
+            StateMachine.Player.Input.PlayerActions.OpenMenu.started += OnMenuOpened;
 
             StateMachine.Player.Input.PlayerActions.Movement.performed += OnMovementPerformed;
             StateMachine.Player.Input.PlayerActions.Movement.canceled += OnMovementCanceled;
@@ -132,9 +133,15 @@ namespace MovementSystem
             StateMachine.Player.Input.PlayerActions.Look.started -= OnMouseMovementStarted;
             StateMachine.Player.Input.PlayerActions.Attack.started -= OnAttackStarted;
             StateMachine.Player.Input.PlayerActions.UseHealItem.started -= OnHealItemUsed;
-
+            StateMachine.Player.Input.PlayerActions.OpenMenu.started -= OnMenuOpened;
+            
             StateMachine.Player.Input.PlayerActions.Movement.performed -= OnMovementPerformed;
             StateMachine.Player.Input.PlayerActions.Movement.canceled -= OnMovementCanceled;
+        }
+
+        private void OnMenuOpened(InputAction.CallbackContext context)
+        {
+            StateMachine.Player.PauseMenu.SetActive(true);
         }
 
         private void OnHealItemUsed(InputAction.CallbackContext context)
